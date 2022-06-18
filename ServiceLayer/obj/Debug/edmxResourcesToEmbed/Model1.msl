@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="gestiuneInventar2ModelStoreContainer" CdmEntityContainer="gestiuneInventar2Entities">
+    <EntitySetMapping Name="Angajats">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.Angajat">
+        <MappingFragment StoreEntitySet="Angajat">
+          <ScalarProperty Name="idAngajat" ColumnName="idAngajat" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="prenume" ColumnName="prenume" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Depozits">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.Depozit">
+        <MappingFragment StoreEntitySet="Depozit">
+          <ScalarProperty Name="idDepozit" ColumnName="idDepozit" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+          <ScalarProperty Name="isCentral" ColumnName="isCentral" />
+          <ScalarProperty Name="isDepozitCasare" ColumnName="isDepozitCasare" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facultates">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.Facultate">
+        <MappingFragment StoreEntitySet="Facultate">
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gestionars">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.Gestionar">
+        <MappingFragment StoreEntitySet="Gestionar">
+          <ScalarProperty Name="idGestionar" ColumnName="idGestionar" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="prenume" ColumnName="prenume" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Obiects">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.Obiect">
+        <MappingFragment StoreEntitySet="Obiect">
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="idObiect" ColumnName="idObiect" />
+          <ScalarProperty Name="categorie" ColumnName="categorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="cnp" ColumnName="cnp" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="prenume" ColumnName="prenume" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subinventars">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.Subinventar">
+        <MappingFragment StoreEntitySet="Subinventar">
+          <ScalarProperty Name="idSubinventar" ColumnName="idSubinventar" />
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="idAngajat" ColumnName="idAngajat" />
+          <ScalarProperty Name="idDepozit" ColumnName="idDepozit" />
+          <ScalarProperty Name="dataPrimire" ColumnName="dataPrimire" />
+          <ScalarProperty Name="dataPredare" ColumnName="dataPredare" />
+          <ScalarProperty Name="idObiect" ColumnName="idObiect" />
+          <ScalarProperty Name="cantitate" ColumnName="cantitate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransferIntrares">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.TransferIntrare">
+        <MappingFragment StoreEntitySet="TransferIntrare">
+          <ScalarProperty Name="idIntrare" ColumnName="idIntrare" />
+          <ScalarProperty Name="idDepozitSursa" ColumnName="idDepozitSursa" />
+          <ScalarProperty Name="idDepozitDestinatie" ColumnName="idDepozitDestinatie" />
+          <ScalarProperty Name="idObiect" ColumnName="idObiect" />
+          <ScalarProperty Name="cantitate" ColumnName="cantitate" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="nrProcesVerbal" ColumnName="nrProcesVerbal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransferuriIesires">
+      <EntityTypeMapping TypeName="gestiuneInventar2Model.TransferuriIesire">
+        <MappingFragment StoreEntitySet="TransferuriIesire">
+          <ScalarProperty Name="idIesire" ColumnName="idIesire" />
+          <ScalarProperty Name="idDepozitSursa" ColumnName="idDepozitSursa" />
+          <ScalarProperty Name="idDepozitDestinatie" ColumnName="idDepozitDestinatie" />
+          <ScalarProperty Name="idObiect" ColumnName="idObiect" />
+          <ScalarProperty Name="cantitate" ColumnName="cantitate" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="nrProcesVerbal" ColumnName="nrProcesVerbal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AdaugareObiect_SP" FunctionName="gestiuneInventar2Model.Store.AdaugareObiect_SP" />
+    <FunctionImportMapping FunctionImportName="DepoziteFacultate_SP" FunctionName="gestiuneInventar2Model.Store.DepoziteFacultate_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.DepoziteFacultate_SP_Result">
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="nume1" ColumnName="nume1" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="IdentifAngajFacult" FunctionName="gestiuneInventar2Model.Store.IdentifAngajFacult">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.IdentifAngajFacult_Result">
+          <ScalarProperty Name="idAngajat" ColumnName="idAngajat" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="prenume" ColumnName="prenume" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="IdentifStudentFacult_SP" FunctionName="gestiuneInventar2Model.Store.IdentifStudentFacult_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.IdentifStudentFacult_SP_Result">
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="cnp" ColumnName="cnp" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="prenume" ColumnName="prenume" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="IdentifSubinvObiect" FunctionName="gestiuneInventar2Model.Store.IdentifSubinvObiect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.IdentifSubinvObiect_Result">
+          <ScalarProperty Name="idSubinventar" ColumnName="idSubinventar" />
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="idAngajat" ColumnName="idAngajat" />
+          <ScalarProperty Name="idDepozit" ColumnName="idDepozit" />
+          <ScalarProperty Name="dataPrimire" ColumnName="dataPrimire" />
+          <ScalarProperty Name="dataPredare" ColumnName="dataPredare" />
+          <ScalarProperty Name="idObiect" ColumnName="idObiect" />
+          <ScalarProperty Name="cantitate" ColumnName="cantitate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListaDepCasare_Sp" FunctionName="gestiuneInventar2Model.Store.ListaDepCasare_Sp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.ListaDepCasare_Sp_Result">
+          <ScalarProperty Name="idDepozit" ColumnName="idDepozit" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+          <ScalarProperty Name="isCentral" ColumnName="isCentral" />
+          <ScalarProperty Name="isDepozitCasare" ColumnName="isDepozitCasare" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListaDepozite_SP" FunctionName="gestiuneInventar2Model.Store.ListaDepozite_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.ListaDepozite_SP_Result">
+          <ScalarProperty Name="idDepozit" ColumnName="idDepozit" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+          <ScalarProperty Name="isCentral" ColumnName="isCentral" />
+          <ScalarProperty Name="isDepozitCasare" ColumnName="isDepozitCasare" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListaFacultati_SP" FunctionName="gestiuneInventar2Model.Store.ListaFacultati_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.ListaFacultati_SP_Result">
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListaObiecte_SP" FunctionName="gestiuneInventar2Model.Store.ListaObiecte_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.ListaObiecte_SP_Result">
+          <ScalarProperty Name="idObiect" ColumnName="idObiect" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="categorie" ColumnName="categorie" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="gestiuneInventar2Model.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="gestiuneInventar2Model.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="gestiuneInventar2Model.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="gestiuneInventar2Model.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="gestiuneInventar2Model.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="gestiuneInventar2Model.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="gestiuneInventar2Model.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="GestionarPeFacultate" FunctionName="gestiuneInventar2Model.Store.GestionarPeFacultate" />
+    <FunctionImportMapping FunctionImportName="IdentifStudentCnp_SP" FunctionName="gestiuneInventar2Model.Store.IdentifStudentCnp_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.IdentifStudentCnp_SP_Result">
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="prenume" ColumnName="prenume" />
+          <ScalarProperty Name="cnp" ColumnName="cnp" />
+          <ScalarProperty Name="nume1" ColumnName="nume1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="IdentifGestPerFacult_SP" FunctionName="gestiuneInventar2Model.Store.IdentifGestPerFacult_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.IdentifGestPerFacult_SP_Result">
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="prenume" ColumnName="prenume" />
+          <ScalarProperty Name="nume1" ColumnName="nume1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListaGestByFacul_SP" FunctionName="gestiuneInventar2Model.Store.ListaGestByFacul_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.ListaGestByFacul_SP_Result">
+          <ScalarProperty Name="idGestionar" ColumnName="idGestionar" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="prenume" ColumnName="prenume" />
+          <ScalarProperty Name="idFacultate" ColumnName="idFacultate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListaObjByCateg_SP" FunctionName="gestiuneInventar2Model.Store.ListaObjByCateg_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.ListaObjByCateg_SP_Result">
+          <ScalarProperty Name="idObiect" ColumnName="idObiect" />
+          <ScalarProperty Name="nume" ColumnName="nume" />
+          <ScalarProperty Name="categorie" ColumnName="categorie" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DeleteObj_SP" FunctionName="gestiuneInventar2Model.Store.DeleteObj_SP" />
+    <FunctionImportMapping FunctionImportName="DeleteSubinv_SP" FunctionName="gestiuneInventar2Model.Store.DeleteSubinv_SP" />
+    <FunctionImportMapping FunctionImportName="InsertObj_SP" FunctionName="gestiuneInventar2Model.Store.InsertObj_SP" />
+    <FunctionImportMapping FunctionImportName="InsertSubinv_SP" FunctionName="gestiuneInventar2Model.Store.InsertSubinv_SP" />
+    <FunctionImportMapping FunctionImportName="UpdateObj_SP" FunctionName="gestiuneInventar2Model.Store.UpdateObj_SP" />
+    <FunctionImportMapping FunctionImportName="UpdateSubinv_SP" FunctionName="gestiuneInventar2Model.Store.UpdateSubinv_SP" />
+    <FunctionImportMapping FunctionImportName="ListaSubinv_SP" FunctionName="gestiuneInventar2Model.Store.ListaSubinv_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="gestiuneInventar2Model.ListaSubinv_SP_Result">
+          <ScalarProperty Name="idSubinventar" ColumnName="idSubinventar" />
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="idAngajat" ColumnName="idAngajat" />
+          <ScalarProperty Name="idDepozit" ColumnName="idDepozit" />
+          <ScalarProperty Name="dataPrimire" ColumnName="dataPrimire" />
+          <ScalarProperty Name="dataPredare" ColumnName="dataPredare" />
+          <ScalarProperty Name="idObiect" ColumnName="idObiect" />
+          <ScalarProperty Name="cantitate" ColumnName="cantitate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

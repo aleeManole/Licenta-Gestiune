@@ -1,0 +1,35 @@
+<tr>
+                        <td>1</td>
+                        <td>Laptop</td>
+                        <td>electronice</td>
+                        <td>
+                           <ButtonToolbar>
+                               <Button className="mr-2" variant="info"
+                               onClick={()=>this.setState({editModalShow:true, objId:obiecte.idObiect, objName:obiecte.nume})}>
+                                Edit
+                               </Button>
+                               <Button className="mr-2" variant="danger" 
+                               onClick={()=>this.deleteObj(objId)}>
+                                   Stergere
+                               </Button>
+                               <EditObjModal show={this.state.editModalShow} objId={objId} objName={objName} onHide={editModalClose}/>
+                            </ButtonToolbar> 
+                        </td>
+                    </tr> 
+                     <tr>
+                        <td>2</td>
+                        <td>Scaun</td>
+                        <td>mobila</td>
+                        <td><ButtonToolbar>
+                               <Button className="mr-2" variant="info"
+                               onClick={()=>this.setState({editModalShow:true, objId:obiecte.idObiect, objName:obiecte.nume})}>
+                                Edit
+                               </Button>
+                               <Button className="mr-2" variant="danger" 
+                               onClick={()=>this.deleteObj(objId)}>
+                                   Stergere
+                               </Button>
+                               <EditObjModal show={this.state.editModalShow} objId={objId} objName={objName} onHide={editModalClose}/>
+                            </ButtonToolbar> 
+                        </td>
+                    </tr>

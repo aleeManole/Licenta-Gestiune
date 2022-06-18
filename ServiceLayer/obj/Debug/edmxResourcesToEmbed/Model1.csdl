@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gestiuneInventar2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Angajat">
+    <Key>
+      <PropertyRef Name="idAngajat" />
+    </Key>
+    <Property Name="idAngajat" Type="Int32" Nullable="false" />
+    <Property Name="nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idFacultate" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="Facultate" Relationship="Self.FK_Angajat_Facultate" FromRole="Angajat" ToRole="Facultate" />
+    <NavigationProperty Name="Subinventars" Relationship="Self.FK_Subinventar_Angajat" FromRole="Angajat" ToRole="Subinventar" />
+  </EntityType>
+  <EntityType Name="Depozit">
+    <Key>
+      <PropertyRef Name="idDepozit" />
+    </Key>
+    <Property Name="idDepozit" Type="Int32" Nullable="false" />
+    <Property Name="nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idFacultate" Type="Int16" />
+    <Property Name="isCentral" Type="Boolean" Nullable="false" />
+    <Property Name="isDepozitCasare" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Facultate" Relationship="Self.FK_Depozit_Facultate" FromRole="Depozit" ToRole="Facultate" />
+    <NavigationProperty Name="Subinventars" Relationship="Self.FK_Subinventar_Depozit" FromRole="Depozit" ToRole="Subinventar" />
+    <NavigationProperty Name="TransferIntrares" Relationship="Self.FK_TransferIntrare_DepozitDestinatie" FromRole="Depozit" ToRole="TransferIntrare" />
+    <NavigationProperty Name="TransferIntrares1" Relationship="Self.FK_TransferIntrare_DepozitSursa" FromRole="Depozit" ToRole="TransferIntrare" />
+    <NavigationProperty Name="TransferuriIesires" Relationship="Self.FK_TransferuriIesire_DepozitDestinatie" FromRole="Depozit" ToRole="TransferuriIesire" />
+    <NavigationProperty Name="TransferuriIesires1" Relationship="Self.FK_TransferuriIesire_DepozitSursa" FromRole="Depozit" ToRole="TransferuriIesire" />
+  </EntityType>
+  <EntityType Name="Facultate">
+    <Key>
+      <PropertyRef Name="idFacultate" />
+    </Key>
+    <Property Name="idFacultate" Type="Int16" Nullable="false" />
+    <Property Name="nume" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Angajats" Relationship="Self.FK_Angajat_Facultate" FromRole="Facultate" ToRole="Angajat" />
+    <NavigationProperty Name="Depozits" Relationship="Self.FK_Depozit_Facultate" FromRole="Facultate" ToRole="Depozit" />
+    <NavigationProperty Name="Gestionars" Relationship="Self.FK_Gestionar_Facultate" FromRole="Facultate" ToRole="Gestionar" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_Facultate" FromRole="Facultate" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Gestionar">
+    <Key>
+      <PropertyRef Name="idGestionar" />
+    </Key>
+    <Property Name="idGestionar" Type="Int64" Nullable="false" />
+    <Property Name="nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idFacultate" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="Facultate" Relationship="Self.FK_Gestionar_Facultate" FromRole="Gestionar" ToRole="Facultate" />
+  </EntityType>
+  <EntityType Name="Obiect">
+    <Key>
+      <PropertyRef Name="idObiect" />
+    </Key>
+    <Property Name="idObiect" Type="Int64" Nullable="false" />
+    <Property Name="nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="categorie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Subinventars" Relationship="Self.FK_Subinventar_Obiect" FromRole="Obiect" ToRole="Subinventar" />
+    <NavigationProperty Name="TransferIntrares" Relationship="Self.FK_TransferIntrare_Obiect" FromRole="Obiect" ToRole="TransferIntrare" />
+    <NavigationProperty Name="TransferuriIesires" Relationship="Self.FK_TransferuriIesire_Obiect" FromRole="Obiect" ToRole="TransferuriIesire" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="idStudent" />
+    </Key>
+    <Property Name="idStudent" Type="Int64" Nullable="false" />
+    <Property Name="cnp" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idFacultate" Type="Int16" Nullable="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Facultate" Relationship="Self.FK_Student_Facultate" FromRole="Student" ToRole="Facultate" />
+    <NavigationProperty Name="Subinventars" Relationship="Self.FK_Subinventar_Student" FromRole="Student" ToRole="Subinventar" />
+  </EntityType>
+  <EntityType Name="Subinventar">
+    <Key>
+      <PropertyRef Name="idSubinventar" />
+    </Key>
+    <Property Name="idSubinventar" Type="Int64" Nullable="false" />
+    <Property Name="idStudent" Type="Int64" Nullable="false" />
+    <Property Name="idAngajat" Type="Int32" Nullable="false" />
+    <Property Name="idDepozit" Type="Int32" Nullable="false" />
+    <Property Name="dataPrimire" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dataPredare" Type="DateTime" Precision="0" />
+    <Property Name="idObiect" Type="Int64" Nullable="false" />
+    <Property Name="cantitate" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Angajat" Relationship="Self.FK_Subinventar_Angajat" FromRole="Subinventar" ToRole="Angajat" />
+    <NavigationProperty Name="Depozit" Relationship="Self.FK_Subinventar_Depozit" FromRole="Subinventar" ToRole="Depozit" />
+    <NavigationProperty Name="Obiect" Relationship="Self.FK_Subinventar_Obiect" FromRole="Subinventar" ToRole="Obiect" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Subinventar_Student" FromRole="Subinventar" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TransferIntrare">
+    <Key>
+      <PropertyRef Name="idIntrare" />
+    </Key>
+    <Property Name="idIntrare" Type="Int64" Nullable="false" />
+    <Property Name="idDepozitSursa" Type="Int32" Nullable="false" />
+    <Property Name="idDepozitDestinatie" Type="Int32" Nullable="false" />
+    <Property Name="idObiect" Type="Int64" Nullable="false" />
+    <Property Name="cantitate" Type="Int16" Nullable="false" />
+    <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="nrProcesVerbal" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Depozit" Relationship="Self.FK_TransferIntrare_DepozitDestinatie" FromRole="TransferIntrare" ToRole="Depozit" />
+    <NavigationProperty Name="Depozit1" Relationship="Self.FK_TransferIntrare_DepozitSursa" FromRole="TransferIntrare" ToRole="Depozit" />
+    <NavigationProperty Name="Obiect" Relationship="Self.FK_TransferIntrare_Obiect" FromRole="TransferIntrare" ToRole="Obiect" />
+  </EntityType>
+  <EntityType Name="TransferuriIesire">
+    <Key>
+      <PropertyRef Name="idIesire" />
+    </Key>
+    <Property Name="idIesire" Type="Int32" Nullable="false" />
+    <Property Name="idDepozitSursa" Type="Int32" Nullable="false" />
+    <Property Name="idDepozitDestinatie" Type="Int32" Nullable="false" />
+    <Property Name="idObiect" Type="Int64" Nullable="false" />
+    <Property Name="cantitate" Type="Int32" Nullable="false" />
+    <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="nrProcesVerbal" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Depozit" Relationship="Self.FK_TransferuriIesire_DepozitDestinatie" FromRole="TransferuriIesire" ToRole="Depozit" />
+    <NavigationProperty Name="Depozit1" Relationship="Self.FK_TransferuriIesire_DepozitSursa" FromRole="TransferuriIesire" ToRole="Depozit" />
+    <NavigationProperty Name="Obiect" Relationship="Self.FK_TransferuriIesire_Obiect" FromRole="TransferuriIesire" ToRole="Obiect" />
+  </EntityType>
+  <Association Name="FK_Angajat_Facultate">
+    <End Role="Facultate" Type="Self.Facultate" Multiplicity="1" />
+    <End Role="Angajat" Type="Self.Angajat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facultate">
+        <PropertyRef Name="idFacultate" />
+      </Principal>
+      <Dependent Role="Angajat">
+        <PropertyRef Name="idFacultate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subinventar_Angajat">
+    <End Role="Angajat" Type="Self.Angajat" Multiplicity="1" />
+    <End Role="Subinventar" Type="Self.Subinventar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Angajat">
+        <PropertyRef Name="idAngajat" />
+      </Principal>
+      <Dependent Role="Subinventar">
+        <PropertyRef Name="idAngajat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Depozit_Facultate">
+    <End Role="Facultate" Type="Self.Facultate" Multiplicity="0..1" />
+    <End Role="Depozit" Type="Self.Depozit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facultate">
+        <PropertyRef Name="idFacultate" />
+      </Principal>
+      <Dependent Role="Depozit">
+        <PropertyRef Name="idFacultate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subinventar_Depozit">
+    <End Role="Depozit" Type="Self.Depozit" Multiplicity="1" />
+    <End Role="Subinventar" Type="Self.Subinventar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depozit">
+        <PropertyRef Name="idDepozit" />
+      </Principal>
+      <Dependent Role="Subinventar">
+        <PropertyRef Name="idDepozit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferIntrare_DepozitDestinatie">
+    <End Role="Depozit" Type="Self.Depozit" Multiplicity="1" />
+    <End Role="TransferIntrare" Type="Self.TransferIntrare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depozit">
+        <PropertyRef Name="idDepozit" />
+      </Principal>
+      <Dependent Role="TransferIntrare">
+        <PropertyRef Name="idDepozitDestinatie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferIntrare_DepozitSursa">
+    <End Role="Depozit" Type="Self.Depozit" Multiplicity="1" />
+    <End Role="TransferIntrare" Type="Self.TransferIntrare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depozit">
+        <PropertyRef Name="idDepozit" />
+      </Principal>
+      <Dependent Role="TransferIntrare">
+        <PropertyRef Name="idDepozitSursa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferuriIesire_DepozitDestinatie">
+    <End Role="Depozit" Type="Self.Depozit" Multiplicity="1" />
+    <End Role="TransferuriIesire" Type="Self.TransferuriIesire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depozit">
+        <PropertyRef Name="idDepozit" />
+      </Principal>
+      <Dependent Role="TransferuriIesire">
+        <PropertyRef Name="idDepozitDestinatie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferuriIesire_DepozitSursa">
+    <End Role="Depozit" Type="Self.Depozit" Multiplicity="1" />
+    <End Role="TransferuriIesire" Type="Self.TransferuriIesire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depozit">
+        <PropertyRef Name="idDepozit" />
+      </Principal>
+      <Dependent Role="TransferuriIesire">
+        <PropertyRef Name="idDepozitSursa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gestionar_Facultate">
+    <End Role="Facultate" Type="Self.Facultate" Multiplicity="1" />
+    <End Role="Gestionar" Type="Self.Gestionar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facultate">
+        <PropertyRef Name="idFacultate" />
+      </Principal>
+      <Dependent Role="Gestionar">
+        <PropertyRef Name="idFacultate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Facultate">
+    <End Role="Facultate" Type="Self.Facultate" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facultate">
+        <PropertyRef Name="idFacultate" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="idFacultate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subinventar_Obiect">
+    <End Role="Obiect" Type="Self.Obiect" Multiplicity="1" />
+    <End Role="Subinventar" Type="Self.Subinventar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Obiect">
+        <PropertyRef Name="idObiect" />
+      </Principal>
+      <Dependent Role="Subinventar">
+        <PropertyRef Name="idObiect" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferIntrare_Obiect">
+    <End Role="Obiect" Type="Self.Obiect" Multiplicity="1" />
+    <End Role="TransferIntrare" Type="Self.TransferIntrare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Obiect">
+        <PropertyRef Name="idObiect" />
+      </Principal>
+      <Dependent Role="TransferIntrare">
+        <PropertyRef Name="idObiect" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransferuriIesire_Obiect">
+    <End Role="Obiect" Type="Self.Obiect" Multiplicity="1" />
+    <End Role="TransferuriIesire" Type="Self.TransferuriIesire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Obiect">
+        <PropertyRef Name="idObiect" />
+      </Principal>
+      <Dependent Role="TransferuriIesire">
+        <PropertyRef Name="idObiect" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subinventar_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Subinventar" Type="Self.Subinventar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="idStudent" />
+      </Principal>
+      <Dependent Role="Subinventar">
+        <PropertyRef Name="idStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="gestiuneInventar2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Angajats" EntityType="Self.Angajat" />
+    <EntitySet Name="Depozits" EntityType="Self.Depozit" />
+    <EntitySet Name="Facultates" EntityType="Self.Facultate" />
+    <EntitySet Name="Gestionars" EntityType="Self.Gestionar" />
+    <EntitySet Name="Obiects" EntityType="Self.Obiect" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Subinventars" EntityType="Self.Subinventar" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TransferIntrares" EntityType="Self.TransferIntrare" />
+    <EntitySet Name="TransferuriIesires" EntityType="Self.TransferuriIesire" />
+    <AssociationSet Name="FK_Angajat_Facultate" Association="Self.FK_Angajat_Facultate">
+      <End Role="Facultate" EntitySet="Facultates" />
+      <End Role="Angajat" EntitySet="Angajats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subinventar_Angajat" Association="Self.FK_Subinventar_Angajat">
+      <End Role="Angajat" EntitySet="Angajats" />
+      <End Role="Subinventar" EntitySet="Subinventars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Depozit_Facultate" Association="Self.FK_Depozit_Facultate">
+      <End Role="Facultate" EntitySet="Facultates" />
+      <End Role="Depozit" EntitySet="Depozits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subinventar_Depozit" Association="Self.FK_Subinventar_Depozit">
+      <End Role="Depozit" EntitySet="Depozits" />
+      <End Role="Subinventar" EntitySet="Subinventars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferIntrare_DepozitDestinatie" Association="Self.FK_TransferIntrare_DepozitDestinatie">
+      <End Role="Depozit" EntitySet="Depozits" />
+      <End Role="TransferIntrare" EntitySet="TransferIntrares" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferIntrare_DepozitSursa" Association="Self.FK_TransferIntrare_DepozitSursa">
+      <End Role="Depozit" EntitySet="Depozits" />
+      <End Role="TransferIntrare" EntitySet="TransferIntrares" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferuriIesire_DepozitDestinatie" Association="Self.FK_TransferuriIesire_DepozitDestinatie">
+      <End Role="Depozit" EntitySet="Depozits" />
+      <End Role="TransferuriIesire" EntitySet="TransferuriIesires" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferuriIesire_DepozitSursa" Association="Self.FK_TransferuriIesire_DepozitSursa">
+      <End Role="Depozit" EntitySet="Depozits" />
+      <End Role="TransferuriIesire" EntitySet="TransferuriIesires" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gestionar_Facultate" Association="Self.FK_Gestionar_Facultate">
+      <End Role="Facultate" EntitySet="Facultates" />
+      <End Role="Gestionar" EntitySet="Gestionars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Facultate" Association="Self.FK_Student_Facultate">
+      <End Role="Facultate" EntitySet="Facultates" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subinventar_Obiect" Association="Self.FK_Subinventar_Obiect">
+      <End Role="Obiect" EntitySet="Obiects" />
+      <End Role="Subinventar" EntitySet="Subinventars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferIntrare_Obiect" Association="Self.FK_TransferIntrare_Obiect">
+      <End Role="Obiect" EntitySet="Obiects" />
+      <End Role="TransferIntrare" EntitySet="TransferIntrares" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransferuriIesire_Obiect" Association="Self.FK_TransferuriIesire_Obiect">
+      <End Role="Obiect" EntitySet="Obiects" />
+      <End Role="TransferuriIesire" EntitySet="TransferuriIesires" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subinventar_Student" Association="Self.FK_Subinventar_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Subinventar" EntitySet="Subinventars" />
+    </AssociationSet>
+    <FunctionImport Name="AdaugareObiect_SP">
+      <Parameter Name="idObiect" Mode="In" Type="Int64" />
+      <Parameter Name="nume" Mode="In" Type="String" />
+      <Parameter Name="categorie" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DepoziteFacultate_SP" ReturnType="Collection(gestiuneInventar2Model.DepoziteFacultate_SP_Result)" />
+    <FunctionImport Name="IdentifAngajFacult" ReturnType="Collection(gestiuneInventar2Model.IdentifAngajFacult_Result)">
+      <Parameter Name="idFacultate" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="IdentifGestFacult_SP">
+      <Parameter Name="idFacultate" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="IdentifObiectNume_SP" ReturnType="Collection(gestiuneInventar2Model.IdentifObiectNume_SP_Result)">
+      <Parameter Name="nume" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="IdentifStudentFacult_SP" ReturnType="Collection(gestiuneInventar2Model.IdentifStudentFacult_SP_Result)">
+      <Parameter Name="idFacultate" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="IdentifSubinvObiect" ReturnType="Collection(gestiuneInventar2Model.IdentifSubinvObiect_Result)">
+      <Parameter Name="idObiect" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="ListaDepCasare_Sp" ReturnType="Collection(gestiuneInventar2Model.ListaDepCasare_Sp_Result)" />
+    <FunctionImport Name="ListaDepozite_SP" ReturnType="Collection(gestiuneInventar2Model.ListaDepozite_SP_Result)" />
+    <FunctionImport Name="ListaFacultati_SP" ReturnType="Collection(gestiuneInventar2Model.ListaFacultati_SP_Result)" />
+    <FunctionImport Name="ListaObiecte_SP" ReturnType="Collection(gestiuneInventar2Model.ListaObiecte_SP_Result)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(gestiuneInventar2Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(gestiuneInventar2Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="GestionarPeFacultate" EntitySet="Gestionars" ReturnType="Collection(gestiuneInventar2Model.Gestionar)">
+      <Parameter Name="idFacultate" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="IdentifStudentCnp_SP" ReturnType="Collection(gestiuneInventar2Model.IdentifStudentCnp_SP_Result)">
+      <Parameter Name="cnp" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ListaGestionariFacultate_SP" ReturnType="Collection(gestiuneInventar2Model.ListaGestionariFacultate_SP_Result)" />
+    <FunctionImport Name="IdentifGestPerFacult_SP" ReturnType="Collection(gestiuneInventar2Model.IdentifGestPerFacult_SP_Result)">
+      <Parameter Name="idFacultate" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="ListaGestByFacul_SP" ReturnType="Collection(gestiuneInventar2Model.ListaGestByFacul_SP_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ListaObjByCateg_SP" ReturnType="Collection(gestiuneInventar2Model.ListaObjByCateg_SP_Result)">
+      <Parameter Name="categorie" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteObj_SP">
+      <Parameter Name="idObiect" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteSubinv_SP">
+      <Parameter Name="idSubinventar" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="InsertObj_SP">
+      <Parameter Name="idObiect" Mode="In" Type="Int64" />
+      <Parameter Name="nume" Mode="In" Type="String" />
+      <Parameter Name="categorie" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertSubinv_SP">
+      <Parameter Name="idSubinventar" Mode="In" Type="Int64" />
+      <Parameter Name="idStudent" Mode="In" Type="Int64" />
+      <Parameter Name="idAngajat" Mode="In" Type="Int32" />
+      <Parameter Name="idDepozit" Mode="In" Type="Int32" />
+      <Parameter Name="dataPrimire" Mode="In" Type="DateTime" />
+      <Parameter Name="dataPredare" Mode="In" Type="DateTime" />
+      <Parameter Name="idObiect" Mode="In" Type="Int64" />
+      <Parameter Name="cantitate" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateObj_SP">
+      <Parameter Name="idObiect" Mode="In" Type="Int64" />
+      <Parameter Name="nume" Mode="In" Type="String" />
+      <Parameter Name="categorie" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateSubinv_SP">
+      <Parameter Name="idSubinventar" Mode="In" Type="Int64" />
+      <Parameter Name="idStudent" Mode="In" Type="Int64" />
+      <Parameter Name="idAngajat" Mode="In" Type="Int32" />
+      <Parameter Name="idDepozit" Mode="In" Type="Int32" />
+      <Parameter Name="dataPrimire" Mode="In" Type="DateTime" />
+      <Parameter Name="dataPredare" Mode="In" Type="DateTime" />
+      <Parameter Name="idObiect" Mode="In" Type="Int64" />
+      <Parameter Name="cantitate" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ListaSubinv_SP" ReturnType="Collection(gestiuneInventar2Model.ListaSubinv_SP_Result)" />
+  </EntityContainer>
+  <ComplexType Name="DepoziteFacultate_SP_Result">
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="nume1" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="idFacultate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="IdentifAngajFacult_Result">
+    <Property Type="Int32" Name="idAngajat" Nullable="false" />
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prenume" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="idFacultate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="IdentifObiectNume_SP_Result">
+    <Property Type="Int64" Name="idObiect" Nullable="false" />
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="categorie" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="IdentifStudentFacult_SP_Result">
+    <Property Type="Int64" Name="idStudent" Nullable="false" />
+    <Property Type="String" Name="cnp" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prenume" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="idFacultate" Nullable="false" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="IdentifSubinvObiect_Result">
+    <Property Type="Int64" Name="idSubinventar" Nullable="false" />
+    <Property Type="Int64" Name="idStudent" Nullable="false" />
+    <Property Type="Int32" Name="idAngajat" Nullable="false" />
+    <Property Type="Int32" Name="idDepozit" Nullable="false" />
+    <Property Type="DateTime" Name="dataPrimire" Nullable="false" />
+    <Property Type="DateTime" Name="dataPredare" Nullable="true" />
+    <Property Type="Int64" Name="idObiect" Nullable="false" />
+    <Property Type="Int32" Name="cantitate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ListaDepCasare_Sp_Result">
+    <Property Type="Int32" Name="idDepozit" Nullable="false" />
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="idFacultate" Nullable="true" />
+    <Property Type="Boolean" Name="isCentral" Nullable="false" />
+    <Property Type="Boolean" Name="isDepozitCasare" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ListaDepozite_SP_Result">
+    <Property Type="Int32" Name="idDepozit" Nullable="false" />
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="idFacultate" Nullable="true" />
+    <Property Type="Boolean" Name="isCentral" Nullable="false" />
+    <Property Type="Boolean" Name="isDepozitCasare" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ListaFacultati_SP_Result">
+    <Property Type="Int16" Name="idFacultate" Nullable="false" />
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ListaObiecte_SP_Result">
+    <Property Type="Int64" Name="idObiect" Nullable="false" />
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="categorie" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GestionarPeFacultate_Result">
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prenume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nume1" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="IdentifStudentCnp_SP_Result">
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prenume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="cnp" Nullable="false" MaxLength="13" />
+    <Property Type="String" Name="nume1" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ListaGestionariFacultate_SP_Result">
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prenume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nume1" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="IdentifGestPerFacult_SP_Result">
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prenume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nume1" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ListaGestByFacul_SP_Result">
+    <Property Type="Int64" Name="idGestionar" Nullable="false" />
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prenume" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="idFacultate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ListaObjByCateg_SP_Result">
+    <Property Type="Int64" Name="idObiect" Nullable="false" />
+    <Property Type="String" Name="nume" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="categorie" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="ListaSubinv_SP_Result">
+    <Property Type="Int64" Name="idSubinventar" Nullable="false" />
+    <Property Type="Int64" Name="idStudent" Nullable="false" />
+    <Property Type="Int32" Name="idAngajat" Nullable="false" />
+    <Property Type="Int32" Name="idDepozit" Nullable="false" />
+    <Property Type="DateTime" Name="dataPrimire" Nullable="false" />
+    <Property Type="DateTime" Name="dataPredare" Nullable="true" />
+    <Property Type="Int64" Name="idObiect" Nullable="false" />
+    <Property Type="Int32" Name="cantitate" Nullable="false" />
+  </ComplexType>
+</Schema>
